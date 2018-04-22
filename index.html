@@ -22,7 +22,7 @@
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">3</span> Moves
+        	<span class="moves">0</span> Moves
 
             <div class="restart">
         		<i class="fa fa-repeat"></i>
@@ -36,7 +36,7 @@
             <li class="card">
                 <i class="fa fa-paper-plane-o"></i>
             </li>
-            <li class="card match">
+            <li class="card ">
                 <i class="fa fa-anchor"></i>
             </li>
             <li class="card">
@@ -45,7 +45,7 @@
             <li class="card">
                 <i class="fa fa-cube"></i>
             </li>
-            <li class="card match">
+            <li class="card ">
                 <i class="fa fa-anchor"></i>
             </li>
             <li class="card">
@@ -66,7 +66,7 @@
             <li class="card">
                 <i class="fa fa-bomb"></i>
             </li>
-            <li class="card open show">
+            <li class="card ">
                 <i class="fa fa-bolt"></i>
             </li>
             <li class="card">
@@ -79,9 +79,25 @@
                 <i class="fa fa-cube"></i>
             </li>
         </ul>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
+        <!-- The Win Modal -->
+        <div id="win-modal" class="modal hidden">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <p>Congratulations! You Won!</p>
+                <p>With <span class="moves">0</span> moves and <span class="num-stars">3</span> stars</p>
+                <p>Completion time: <span class="timer">0:00</span></p>
+                <button class="play-again">Play Again!</button>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/app.js"></script>
 
 </body>

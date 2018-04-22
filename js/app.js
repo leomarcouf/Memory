@@ -4,6 +4,7 @@
 var cartes = [];
 var nomCarte = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 var ouvrirCarte = [];
+var modal = $("#win-modal");
 
 /*
  * Display the cards on the page
@@ -13,14 +14,13 @@ var ouvrirCarte = [];
  */
 
 
-
 /*On cherche tous les li dans deck et on les stock dans un array cartes*/
 $('.deck').each(function() {
     $(this).find('li').each(function() {
         cartes.push($(this));
     });
 });
-
+var temp = 0;
 
 /*On utilise la fonction shuffle pour melanger les carte*/
 nomCarte = shuffle(nomCarte);
@@ -32,6 +32,16 @@ $('.deck').each(function() {
         $(this).addClass(nomCarte[cardNumber]);
         cardNumber++;
     });
+});
+
+$('.deck').each(function() {
+    $(this).find('li').find('i').each(function() {
+        var tempClass = $($(cartes[temp][0]).find('i')[0]).attr('class');
+        $(this).removeAttr('class');
+        $(this).addClass(tempClass);
+        temp++;
+    });
+    console.log(cartes)
 });
 
 
@@ -61,3 +71,80 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+var moves = 0,
+    stars = 3;
+
+removeProperties = function(prop) {
+    setTimeout(function() {
+        prop.removeClass('show open animated wobble');
+        ouvrirCarte[0].removeClass('show open animated wobble');
+        ouvrirCarte = [];
+    }, 400);
+};
+
+showCardOnClick = function(clickEvent) {
+    clickEvent.on('click', function() {
+        moves++;
+        if (moves === 16) {
+
+        } else if (moves > 16 && moves <= 25) {
+            $('section ul li').hide();
+            $('section ul').append('<li><i class="fa fa-star"></i></li>');
+            $('section ul').append('<li><i class="fa fa-star"></i></li>');
+            stars = 2;
+        } else if (moves > 25) {
+            $('section ul li').hide();
+            $('section ul').append('<li><i class="fa fa-star"></i></li>');
+            stars = 1;
+        }
+        $('.moves').html(moves);
+        if ((ouvrirCarte.length % 2) === 0) {
+            $(this).addClass('show open animated wobble');
+            $(this).off('click');
+            ouvrirCarte.push($(this));
+        } else if (ouvrirCarte.length !== 0) {
+            $(this).addClass('show open animated wobble');
+
+            var self = $(this);
+            for (var i = 0; i < ouvrirCarte.length; i++) {
+                if (ouvrirCarte[i].find('i').attr('class') === self.find('i').attr('class')) {
+                    // ouvrirCarte.push(self);
+                    self.removeClass('animated wobble');
+                    self.addClass('show match animated rubberBand');
+                    ouvrirCarte[i].removeClass('animated wobble');
+                    ouvrirCarte[i].addClass('show match animated rubberBand');
+                    console.log('match');
+                    $(this).off('click');
+                    //ouvrirCarte.push(self);
+                    ouvrirCarte = [];
+                    break;
+                } else {
+                    self.addClass('show open animated wobble');
+                    removeProperties(self);
+                    ouvrirCarte[0].on('click', showCardOnClick(ouvrirCarte[0]));
+                    console.log('no match');
+                }
+            }
+        }
+        if ($('.deck').find('.match').length === 16) {
+		  modal.removeClass('hidden');
+		  modal.addClass('visible');
+        }
+
+
+    });
+};
+
+for (var i = 0; i < cartes.length; i++) {
+    cartes[i].on('click', showCardOnClick(cartes[i]));
+}
+
+$('.restart').on('click', function() {
+    location.reload();
+});
+
+$('.play-again').on('click', function() {
+    location.reload();
+});
+
+
