@@ -1,7 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-
+var cartes = [];
+var nomCarte = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
+var ouvrirCarte = [];
 
 /*
  * Display the cards on the page
@@ -9,6 +11,29 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+
+
+/*On cherche tous les li dans deck et on les stock dans un array cartes*/
+$('.deck').each(function() {
+    $(this).find('li').each(function() {
+        cartes.push($(this));
+    });
+});
+
+
+/*On utilise la fonction shuffle pour melanger les carte*/
+nomCarte = shuffle(nomCarte);
+
+var cardNumber = 0;
+$('.deck').each(function() {
+    $(this).find('li').find('i').each(function() {
+        $(this).removeAttr('class');
+        $(this).addClass(nomCarte[cardNumber]);
+        cardNumber++;
+    });
+});
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
