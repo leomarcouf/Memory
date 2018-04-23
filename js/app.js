@@ -1,3 +1,6 @@
+/*
+Mise en place du timer
+ */
 var min = 0;
 var sec = 0;
 var hours = 0;
@@ -102,7 +105,7 @@ function shuffle(array) {
  */
 var moves = 0,
     stars = 3;
-
+/*fonction qui permettra d'enlever les proprieté classe lors de la comparaison de carte*/
 removeProperties = function(prop) {
     setTimeout(function() {
         prop.removeClass('show open animated wobble');
@@ -111,9 +114,11 @@ removeProperties = function(prop) {
     }, 400);
 };
 
+/*Fonctions au clic des cartes*/
 showCardOnClick = function(clickEvent) {
     clickEvent.on('click', function() {
         moves++;
+        //calcul du nombre de mouvement enregistré
         if (moves === 16) {
 
         } else if (moves > 16 && moves <= 25) {
@@ -135,6 +140,7 @@ showCardOnClick = function(clickEvent) {
             $(this).addClass('show open animated wobble');
 
             var self = $(this);
+            //comparaison des carte pour voir si match ou non
             for (var i = 0; i < ouvrirCarte.length; i++) {
                 if (ouvrirCarte[i].find('i').attr('class') === self.find('i').attr('class')) {
                     // ouvrirCarte.push(self);
@@ -155,6 +161,7 @@ showCardOnClick = function(clickEvent) {
                 }
             }
         }
+        //ouverture de la fenetre modale
         if ($('.deck').find('.match').length === 16) {
 		  modal.removeClass('hidden');
 		  modal.addClass('visible');
@@ -165,15 +172,15 @@ showCardOnClick = function(clickEvent) {
 
     });
 };
-
+//retournement des carte au click
 for (var i = 0; i < cartes.length; i++) {
     cartes[i].on('click', showCardOnClick(cartes[i]));
 }
-
+//bouton restart
 $('.restart').on('click', function() {
     location.reload();
 });
-
+// bouton rejouer de la fenetre modale
 $('.play-again').on('click', function() {
     location.reload();
 });

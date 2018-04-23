@@ -98,7 +98,7 @@ h1 {
     margin: 0 5px 0 0;
 }
 
-.score-panel .stars li {
+.score-panel .stars li, .score-panel2 .stars li {
     list-style: none;
     display: inline-block;
 }
@@ -143,4 +143,16 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     text-align: center;
+}
+.score-panel2 {
+
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+.stars {
+
+    padding: 0;
+
 }
