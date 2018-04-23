@@ -4,7 +4,8 @@ Mise en place du timer
 var min = 0;
 var sec = 0;
 var hours = 0;
-var letsStop = 0;
+//le chrono de demmarre pas directement
+var letsStop = 1;
 window.onload = function() {
     setInterval(function() {
         if (letsStop !== 1) {
@@ -117,6 +118,9 @@ removeProperties = function(prop) {
 /*Fonctions au clic des cartes*/
 showCardOnClick = function(clickEvent) {
     clickEvent.on('click', function() {
+    	//on lance le chrono au premier clic de carte
+    	letsStop = 0;
+
         moves++;
         //calcul du nombre de mouvement enregistré
         if (moves === 16) {
