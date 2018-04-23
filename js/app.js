@@ -169,7 +169,7 @@ showCardOnClick = function(clickEvent) {
         if ($('.deck').find('.match').length === 16) {
 		  modal.removeClass('hidden');
 		  modal.addClass('visible');
-		   letsStop = 1;
+		  letsStop = 1;
             
         }
 
