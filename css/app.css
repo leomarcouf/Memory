@@ -29,10 +29,18 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Courgette', cursive;
+    font-size: 70px;
     font-weight: 300;
+    line-height: 53px;
+    color: #3ca7b7;
+    text-align: center;
 }
 
+h1 span {
+    font-size: 39px;
+    color: #6f83b1;
+}
 /*
  * Styles for the deck of cards
  */
@@ -87,7 +95,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 660px;
     margin-bottom: 10px;
 }
 
@@ -107,7 +115,9 @@ h1 {
     float: right;
     cursor: pointer;
 }
-
+.fa-star::before {
+    color: orange;
+}
 
 /*
  * Styles for the win modal
@@ -133,7 +143,6 @@ h1 {
     background-color: rgba(0,0,0,0.4);
 }
 
-
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -152,7 +161,13 @@ h1 {
 
 }
 .stars {
-
     padding: 0;
+}
+.win {
+    font-family: 'Courgette', cursive;
+    font-size: 50px;
+    font-weight: 300;
+    color: #3ca7b7;
+    text-align: center;
 
 }
